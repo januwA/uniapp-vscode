@@ -19,17 +19,23 @@
   },
   "bindtap": {
     "prefix": "bindtap",
-    "body": ["bindtap = \"${1}\""],
+    "body": [
+      "bindtap = \"${1}\""
+    ],
     "description": "bindtap"
   },
   "comments": {
     "prefix": "<!--",
-    "body": ["<!--${1}-->"],
+    "body": [
+      "<!--${1}-->"
+    ],
     "description": "comments"
   },
   "catchtap": {
     "prefix": "catchtap",
-    "body": ["catchtap = \"${1}\""],
+    "body": [
+      "catchtap = \"${1}\""
+    ],
     "description": "catchtap"
   },
   "scroll-view": {
@@ -188,7 +194,11 @@
   },
   "label": {
     "prefix": "label",
-    "body": ["<label class=\"${1}\" for=\"${2}\">", "\t${3}", "</label>"],
+    "body": [
+      "<label class=\"${1}\" for=\"${2}\">",
+      "\t${3}",
+      "</label>"
+    ],
     "description": "用来改进表单组件的可用性，使用for属性找到对应的id，或者将控件放在该标签下，当点击时，就会触发对应的控件。for优先级高于内部控件，内部有多个控件的时候默认触发第一个控件。目前可以绑定的控件有<button/>、<checkbox/>、<radio/>、<switch/>"
   },
   "picker": {
@@ -212,12 +222,20 @@
   },
   "picker-view-column": {
     "prefix": "picker-view-column",
-    "body": ["<picker-view-column>", "\t${1}", "</picker-view-column>"],
+    "body": [
+      "<picker-view-column>",
+      "\t${1}",
+      "</picker-view-column>"
+    ],
     "description": "仅可放置于<picker-view />中 其孩子节点的高度会自动设置成与picker-view的选中框的高度一致"
   },
   "radio-group": {
     "prefix": "radio-group",
-    "body": ["<radio-group bindchange=\"${1}\">", "\t${2}", "</radio-group>"],
+    "body": [
+      "<radio-group bindchange=\"${1}\">",
+      "\t${2}",
+      "</radio-group>"
+    ],
     "description": "单项选择器 内部由多个<radio/>组成"
   },
   "radio": {
@@ -338,7 +356,6 @@
     ],
     "description": "实时音视频录制。需要用户授权 scope.camera、scope.record。默认宽度为100%、无默认高度，请通过wxss设置宽高"
   },
-
   "map": {
     "prefix": "map",
     "body": [
@@ -364,7 +381,9 @@
   },
   "web-view": {
     "prefix": "web-view",
-    "body": ["<web-view src=\"${1}\" bindmessage=\"${2}\"></web-view>"],
+    "body": [
+      "<web-view src=\"${1}\" bindmessage=\"${2}\"></web-view>"
+    ],
     "description": "可以用来承载网页的容器，会自动铺满整个小程序页面"
   },
   "ad": {
@@ -376,7 +395,56 @@
   },
   "block": {
     "prefix": "block",
-    "body": ["<block wx:for=\"{{${1:items}}}\">", "\t${2}", "</block>"],
+    "body": [
+      "<block wx:for=\"{{${1:items}}}\">",
+      "\t${2}",
+      "</block>"
+    ],
     "description": "block标签，不是组件，只是包装元素，不会在页面中做任何渲染，只接受控制属性"
+  },
+  "vue3 模板": {
+    "prefix": "vue3",
+    "body": [
+      "<template>",
+      "  <view class=\"\">",
+      "    {{title}}",
+      "  </view>",
+      "</template>",
+      "",
+      "<script setup>",
+      "import { ref, computed,reactive,readonly,",
+      "        watchEffect,watchPostEffect,watchSyncEffect,watch,",
+      "        isRef,unref,toRef,toValue,toRefs,isProxy,isReactive,isReadonly,",
+      "        shallowRef,triggerRef,customRef,shallowReactive,shallowReadonly,",
+      "        toRaw,markRaw,effectScope,getCurrentScope,onScopeDispose,",
+      "        onMounted,onUpdated,onUnmounted,",
+      "        onBeforeMount,onBeforeUpdate,onBeforeUnmount,",
+      "        provide,inject } from 'vue'",
+      "",
+      "// https://uniapp.dcloud.net.cn/tutorial/page.html#lifecycle ",
+      "import { onLaunch,onShow,onHide,onError,onUniNViewMessage,onUnhandledRejection,onPageNotFound,onThemeChange,",
+      "        onLoad,onReady,onUnload,onResize,onPullDownRefresh,onReachBottom,onTabItemTap,onShareAppMessage,onPageScroll,",
+      "         onNavigationBarButtonTap,onBackPress,onNavigationBarSearchInputChanged,onNavigationBarSearchInputConfirmed,",
+      "         onNavigationBarSearchInputClicked,onShareTimeline,onAddToFavorites",
+      "        } from \"@dcloudio/uni-app\";",
+      "",
+      "  const props = defineProps({",
+      "    id: String,",
+      "    name: {",
+      "      type: String,",
+      "      default: \"foo\"",
+      "    }",
+      "  });",
+      "",
+      "// v-model:title=\"xx\"",
+      "const emit = defineEmits(['onChange', 'update:title']);",
+      "",
+      "const title = ref(\"hello\");",
+      "</script>",
+      "",
+      "<style lang=\"scss\" scoped>",
+      "</style>"
+    ],
+    "description": "vue3 模板"
   }
 }

@@ -25,19 +25,9 @@ import {
 
 import LinkProvider from "./plugin/LinkProvider";
 import ActiveTextEditorListener from "./plugin/ActiveTextEditorListener";
-
-import HoverProvider from "./plugin/HoverProvider";
-import JsHoverProvider from "./plugin/JsHoverProvider";
-import WxmlFormatter from "./plugin/WxmlFormatter";
-
-import WxmlAutoCompletion from "./plugin/WxmlAutoCompletion";
-import PugAutoCompletion from "./plugin/PugAutoCompletion";
-import JsAutoCompletion from "./plugin/JsAutoCompletion";
-// import VueAutoCompletion from "./plugin/VueAutoCompletion";
 import WxmlDocumentHighlight from "./plugin/WxmlDocumentHighlight";
 
 import { config, configActivate, configDeactivate } from "./plugin/lib/config";
-import { PropDefinitionProvider } from "./plugin/PropDefinitionProvider";
 
 export function activate(context: ExtensionContext) {
   // const currentlyOpenTabfilePath = window.activeTextEditor?.document.uri.fsPath;
@@ -50,19 +40,12 @@ export function activate(context: ExtensionContext) {
     autoConfig();
   }
 
-  const formatter = new WxmlFormatter(config);
-  const autoCompletionWxml = new WxmlAutoCompletion(config);
-  const hoverProvider = new HoverProvider(config);
-  const jsHoverProvider = new JsHoverProvider(config);
   const linkProvider = new LinkProvider(config);
-  const autoCompletionPug = new PugAutoCompletion(config);
-  const jsAutoCompletion = new JsAutoCompletion(config);
   // const autoCompletionVue = new VueAutoCompletion(
   //   autoCompletionPug,
   //   autoCompletionWxml
   // );
   const documentHighlight = new WxmlDocumentHighlight(config);
-  const propDefinitionProvider = new PropDefinitionProvider(config);
 
   const wxml = config.documentSelector.map((l) => schemes(l));
   const pug = schemes("wxml-pug");
@@ -217,77 +200,9 @@ export function activate(context: ExtensionContext) {
       linkProvider
     ),
 
-    // hover 效果
-    languages.registerHoverProvider(
-      [pug, vue, html].concat(wxml),
-      hoverProvider
-    ),
-
-    languages.registerHoverProvider([vue], jsHoverProvider),
 
     // 高亮匹配的标签
     languages.registerDocumentHighlightProvider(wxml, documentHighlight),
-
-    // 格式化
-    languages.registerDocumentFormattingEditProvider(wxml, formatter),
-    languages.registerDocumentRangeFormattingEditProvider(wxml, formatter),
-
-    // DefinitionProvider
-    languages.registerDefinitionProvider(
-      [pug, vue].concat(wxml),
-      propDefinitionProvider
-    ),
-
-    // 自动补全
-    languages.registerCompletionItemProvider(
-      wxml,
-      autoCompletionWxml,
-      "<",
-      " ",
-      ":",
-      "@",
-      ".",
-      "-",
-      '"',
-      "'",
-      "/",
-      ...enter
-    ),
-    languages.registerCompletionItemProvider(
-      pug,
-      autoCompletionPug,
-      "\n",
-      " ",
-      "(",
-      ":",
-      "@",
-      ".",
-      "-",
-      '"',
-      "'"
-    ),
-    // trigger 需要是上两者的和
-    languages.registerCompletionItemProvider(
-      vue,
-      autoCompletionWxml,
-      "<",
-      " ",
-      ":",
-      "@",
-      ".",
-      "-",
-      '"',
-      "'",
-      ...enter
-    ),
-    languages.registerCompletionItemProvider(
-      vue,
-      jsAutoCompletion,
-      "\n",
-      ".",
-      " ",
-      ...enter
-    )
   );
 }
 
