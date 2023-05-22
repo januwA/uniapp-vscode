@@ -144,7 +144,7 @@ export function activate(context: ExtensionContext) {
 
       const pagesFP = path.join(dd, PAGES_JSON_NAME);
 
-      const pagesData = cjson.parse(
+      const pagesData:any = cjson.parse(
         fs.readFileSync(pagesFP, { encoding: "utf-8" }).toString()
       );
 
