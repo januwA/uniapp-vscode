@@ -1,3 +1,5 @@
+from build vsix version
+
 # 一个灵活、好用、持续维护的uniapp小程序拓展
 ## 新增创建组件和页面的功能
 ## 新增Api提示功能

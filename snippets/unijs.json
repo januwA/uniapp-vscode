@@ -4658,25 +4658,32 @@
     "prefix": "import-uniapp",
     "body": [
       "// https://uniapp.dcloud.net.cn/tutorial/page.html#lifecycle ",
-      "import { onLaunch,onShow,onHide,onError,onUniNViewMessage,onUnhandledRejection,onPageNotFound,onThemeChange,",
-      "        onLoad,onReady,onUnload,onResize,onPullDownRefresh,onReachBottom,onTabItemTap,onShareAppMessage,onPageScroll,",
-      "         onNavigationBarButtonTap,onBackPress,onNavigationBarSearchInputChanged,onNavigationBarSearchInputConfirmed,",
-      "         onNavigationBarSearchInputClicked,onShareTimeline,onAddToFavorites",
-      "        } from \"@dcloudio/uni-app\";"
+      "import {",
+      "  // #ifdef APP-NVUE",
+      "  onUniNViewMessage,",
+      "  // #endif",
+      "  onLaunch, onShow, onHide, onError,",
+      "  onLoad, onReady, onUnload, onResize, onPullDownRefresh, onReachBottom, onTabItemTap, onShareAppMessage, onPageScroll,",
+      "  onUnhandledRejection, onPageNotFound, onThemeChange,",
+      "  onNavigationBarButtonTap, onBackPress, onNavigationBarSearchInputChanged, onNavigationBarSearchInputConfirmed,",
+      "  onNavigationBarSearchInputClicked, onShareTimeline, onAddToFavorites",
+      "} from \"@dcloudio/uni-app\";"
     ],
     "description": "在 Vue3 组合式 API 中使用uniapp生命周期钩子"
   },
   "vue3 组件需要使用的函数": {
     "prefix": "import-vue3",
     "body": [
-      "import { ref, computed,reactive,readonly,",
-      "        watchEffect,watchPostEffect,watchSyncEffect,watch,",
-      "        isRef,unref,toRef,toValue,toRefs,isProxy,isReactive,isReadonly,",
-      "        shallowRef,triggerRef,customRef,shallowReactive,shallowReadonly,",
-      "        toRaw,markRaw,effectScope,getCurrentScope,onScopeDispose,",
-      "        onMounted,onUpdated,onUnmounted,",
-      "        onBeforeMount,onBeforeUpdate,onBeforeUnmount,",
-      "        provide,inject } from 'vue'"
+      "import {",
+      "  ref, computed, reactive, readonly,",
+      "  watchEffect, watchPostEffect, watchSyncEffect, watch,",
+      "  isRef, unref, toRef, toRefs, isProxy, isReactive, isReadonly,",
+      "  shallowRef, triggerRef, customRef, shallowReactive, shallowReadonly,",
+      "  toRaw, markRaw, effectScope, getCurrentScope, onScopeDispose,",
+      "  onMounted, onUpdated, onUnmounted,",
+      "  onBeforeMount, onBeforeUpdate, onBeforeUnmount,",
+      "  provide, inject",
+      "} from 'vue'"
     ],
     "description": "vue3 组件需要使用的函数"
   }
