@@ -2,6 +2,13 @@
   "view": {
     "prefix": "view",
     "body": [
+      "<view class=\"${1}\">${2}</view>"
+    ],
+    "description": "基础的视图容器"
+  },
+  "view2": {
+    "prefix": "view",
+    "body": [
       "<view class=\"${1}\" hover-class=\"${2:none}\" hover-stop-propagation=\"${3:false}\">",
       "\t${4}",
       "</view>"
@@ -117,6 +124,13 @@
     "description": "图标"
   },
   "text": {
+    "prefix": "text",
+    "body": [
+      "<text class=\"${1}\">${2}</text>"
+    ],
+    "description": "文本"
+  },
+  "text2": {
     "prefix": "text",
     "body": [
       "<text class=\"${1}\" selectable=\"${2:false}\" space=\"${3:false}\" decode=\"${4:false}\">",
