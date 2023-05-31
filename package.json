@@ -39,6 +39,7 @@
     "Programming Languages"
   ],
   "activationEvents": [
+    "onCommand:uniapp.rename-component",
     "onCommand:uniapp.create-component",
     "onCommand:uniapp.create-page",
     "workspaceContains:minapp.cjson",
@@ -48,6 +49,10 @@
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "uniapp.rename-component",
+        "title": "Uniapp Rename Component"
+      },
       {
         "command": "uniapp.create-component",
         "title": "Uniapp Create Component"
@@ -59,6 +64,10 @@
     ],
     "menus": {
       "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "uniapp.rename-component"
+        },
         {
           "when": "explorerResourceIsFolder",
           "command": "uniapp.create-component"
@@ -238,7 +247,8 @@
           "uniqueItems": true,
           "default": [
             "wxml",
-            "vue-html"
+            "vue-html",
+            "vue"
           ],
           "description": "关联的文件类型，默认关联 wxml,vue如可以加上 html，这样在 html 中也可以有 wxml 的功能"
         },
@@ -316,6 +326,10 @@
       },
       {
         "language": "vue-html",
+        "path": "./snippets/uniml.json"
+      },
+      {
+        "language": "vue",
         "path": "./snippets/uniml.json"
       },
       {

@@ -41,17 +41,10 @@ export function activate(context: ExtensionContext) {
   }
 
   const linkProvider = new LinkProvider(config);
-  // const autoCompletionVue = new VueAutoCompletion(
-  //   autoCompletionPug,
-  //   autoCompletionWxml
-  // );
   const documentHighlight = new WxmlDocumentHighlight(config);
 
   const wxml = config.documentSelector.map((l) => schemes(l));
-  const pug = schemes("wxml-pug");
   const vue = schemes("vue");
-  const html = schemes("html");
-  const enter = config.showSuggestionOnEnter ? ["\n"] : [];
 
   // 创建easycom组件命令
   const CreateComponent = commands.registerCommand(
@@ -76,27 +69,35 @@ export function activate(context: ExtensionContext) {
 
       fs.writeFileSync(
         f,
-        `<template>
-  <view></view>
-</template>
-
-<script>
-  export default {
-    name:"${componentName}",
-    data() {
-      return {
-        
-      };
-    }
-  }
-</script>
-
-<style lang="scss" scoped>
-
-</style>
-    
-      `
+        `<template> <view></view></template>
+<script> export default { name:"${componentName}", data() { return { }; } } </script>
+<style lang="scss" scoped> </style>`
       );
+    }
+  );
+
+  // easycom组件重新命名
+  const RenameComponent = commands.registerCommand(
+    "uniapp.rename-component",
+    async (fileUri) => {
+      if (!fileUri) return;
+
+      const comDir = fileUri.fsPath; // 绝对路径
+      const comParentDir = path.dirname(comDir);
+      const oldName = path.basename(comDir);
+
+      const newtName = await window.showInputBox({
+        value: oldName,
+        placeHolder: "组件名称",
+      });
+      if (!newtName) return;
+
+      const comFile = path.join(comDir, `${oldName}.vue`);
+
+      if (!fs.existsSync(comFile)) return;
+
+      fs.renameSync(comFile,path.join(comDir, `${newtName}.vue`));
+      fs.renameSync(comDir, path.join(comParentDir, newtName));
     }
   );
 
@@ -144,7 +145,7 @@ export function activate(context: ExtensionContext) {
 
       const pagesFP = path.join(dd, PAGES_JSON_NAME);
 
-      const pagesData:any = cjson.parse(
+      const pagesData: any = cjson.parse(
         fs.readFileSync(pagesFP, { encoding: "utf-8" }).toString()
       );
 
@@ -164,45 +165,23 @@ export function activate(context: ExtensionContext) {
       fs.mkdirSync(d);
       fs.writeFileSync(
         f,
-        `<template>
-  <view></view>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        
-      };
-    }
-  }
-</script>
-
-<style lang="scss" scoped>
-
-</style>
-    
-      `
+        `<template><view></view></template><script> export default { data() { return { }; } } </script><style lang="scss" scoped> </style>`
       );
     }
   );
 
   context.subscriptions.push(
+    RenameComponent,
     CreateComponent,
     CreatePage,
 
     //todo 给模板中的 脚本 添加特殊颜色
     new ActiveTextEditorListener(config),
 
-    //todo 添加 link
-    languages.registerDocumentLinkProvider(
-      [pug, vue].concat(wxml),
-      linkProvider
-    ),
-
+    languages.registerDocumentLinkProvider([vue].concat(wxml), linkProvider),
 
     // 高亮匹配的标签
-    languages.registerDocumentHighlightProvider(wxml, documentHighlight),
+    languages.registerDocumentHighlightProvider(wxml, documentHighlight)
   );
 }
 
