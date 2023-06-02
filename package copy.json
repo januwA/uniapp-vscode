@@ -150,6 +150,11 @@
               "open-data": {
                 "body": "<open-data type=\"${1|groupName,userNickName,userAvatarUrl,userGender,userCity,userProvince,userCountry,userLanguage|}\" lang=\"${2|en,zh_CN,zh_TW|}\" />$0"
               }
+            },
+            "pug": {
+              "open-data": {
+                "body": "open-data(type=\"${1|groupName,userNickName,userAvatarUrl,userGender,userCity,userProvince,userCountry,userLanguage|}\" lang=\"${2|en,zh_CN,zh_TW|}\")$0"
+              }
             }
           }
         },
@@ -316,7 +321,19 @@
       },
       {
         "language": "html",
+        "path": "./snippets/wxxml.json"
+      },
+      {
+        "language": "vue-html",
         "path": "./snippets/uniml.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/uniml.json"
+      },
+      {
+        "language": "wxml",
+        "path": "./snippets/wxxml.json"
       },
       {
         "language": "json",

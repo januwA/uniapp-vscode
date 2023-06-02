@@ -594,8 +594,7 @@
       "<!-- #ifdef ${1|APP-NVUE,APP-PLUS,APP-PLUS-NVUE,APP-VUE,H5,MP,MP-360,MP-ALIPAY,MP-BAIDU,MP-KUAISHOU,MP-QQ,MP-TOUTIAO,MP-WEIXIN,QUICKAPP-WEBVIEW,QUICKAPP-WEBVIEW-HUAWEI,QUICKAPP-WEBVIEW-UNION,VUE2,VUE3,APP-ANDROID,APP-IOS,MP-LARK,MP-JD|} -->",
       "$0",
       "<!-- #endif -->"
-    ],
-    "scope": "vue-html"
+    ]
   },
   "ifn html条件编译": {
     "prefix": "#ifndef",
@@ -603,7 +602,6 @@
       "<!-- #ifndef ${1|APP-NVUE,APP-PLUS,APP-PLUS-NVUE,APP-VUE,H5,MP,MP-360,MP-ALIPAY,MP-BAIDU,MP-KUAISHOU,MP-QQ,MP-TOUTIAO,MP-WEIXIN,QUICKAPP-WEBVIEW,QUICKAPP-WEBVIEW-HUAWEI,QUICKAPP-WEBVIEW-UNION,VUE2,VUE3,APP-ANDROID,APP-IOS,MP-LARK,MP-JD|} -->",
       "$0",
       "<!-- #endif -->"
-    ],
-    "scope": "vue-html"
+    ]
   }
 }
