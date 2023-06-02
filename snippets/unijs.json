@@ -4628,10 +4628,13 @@
     "prefix": "defineProps",
     "body": [
       "  const props = defineProps({",
-      "    id: String,",
+      "    id: String, //String,Number,Boolean,Array,Object,Date,Function,Symbol", 
       "    name: {",
       "      type: String,",
-      "      default: \"foo\"",
+      "      required: true,",
+      "      default: 'foo',",
+      "      default(rawProps){return 'foo'},",
+      "      validator(val){return ['a','b','c'].includes(val)},",
       "    }",
       "  });"
     ],
